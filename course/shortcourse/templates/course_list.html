@@ -1,0 +1,22 @@
+
+<ul>
+	<!-- Iterate over object_list -->
+	{% for object in object_list %}
+	<!-- Display Objects -->
+	<li><h3>{{ object.course }}</h3></li>
+	<li><h3>{{ object.course.price }}</h3></li>
+	<h3></h3><li>{{ object.section_title}}</li>
+    <li><h3>{{ object.section_start_date}}</h3></li>
+    <h3></h3><li>{{ object.section_end_date}}</li>
+    <br>
+    <button type="button" class="btn btn-primary"><a  href="{{ object.id}}" >Apply </a> </button>
+    {% comment %} <h3>Course outline</h3><li>{{ object.id}}</li> {% endcomment %}
+    {% comment %} <li>{{ object.course_image}}</li> {% endcomment %}
+
+	<hr/>
+	<!-- If object_list is empty -->
+	{% empty %}
+	<li>No objects yet.</li>
+	{% endfor %}
+</ul>
+<button type="button" class="btn btn-primary"><a  href="/" >Back</a> </button>

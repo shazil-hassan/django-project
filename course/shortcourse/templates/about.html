@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{%block body%}
+
+  <!-- Page Content -->
+  <div class="py-10 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="offset-lg-2 col-lg-8 col-md-12 col-12 mb-12">
+          <!-- caption-->
+          <h3 class="display-2 fw-bold mb-4">Hi there, we’re <span class="text-primary">Short Course</span></h3>
+          <!-- para -->
+          <p class="h2 mb-3 ">We’re building the best next-generation interactive bootstrap based UI Kit design tool for
+            developers, engineers, Full-Stack developer, and digital agency.</p>
+          <p class="mb-0 h4 text-body lh-lg">Geeks provide clean and consistent page designs to help you to create beautiful
+            looking contents. Geek is feature-rich components and beautifully designed pages that help you create the
+            best possible website and web application projects.</p>
+        </div>
+      </div>
+       <!-- gallery -->
+      <div class="gallery mb-12">
+       <!-- gallery-item -->
+        <figure class="gallery__item gallery__item--1 mb-0">
+          <img src="{% static 'assets/images/about/geeksui-img-5.jpg' %}" alt="Gallery image 1" class="gallery__img rounded-3">
+        </figure>
+         <!-- gallery-item -->
+        <figure class="gallery__item gallery__item--2 mb-0">
+          <img src="{% static 'assets/images/about/geeksui-img-2.jpg' %}" alt="Gallery image 2" class="gallery__img rounded-3">
+        </figure>
+         <!-- gallery-item -->
+        <figure class="gallery__item gallery__item--3 mb-0">
+          <img src="{% static 'assets/images/about/geeksui-img-3.jpg'%}" alt="Gallery image 3" class="gallery__img rounded-3">
+        </figure>
+         <!-- gallery-item -->
+      
+       </div>
+        </div>
+      </div>
+
+ {%endblock body%}
