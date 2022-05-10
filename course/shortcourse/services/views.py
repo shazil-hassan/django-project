@@ -13,33 +13,36 @@ from .models import *
 def about(request):
     return render(request, 'about.html')
 
-def base(request,aid):
-    img = Section.objects.get(id=aid)
-    
-    data ={
-        'img':img
 
-        }
-
- 
-    return render(request, 'base.html', data)
 
 def index(request):
     
-    img= Section.objects.all()
+    sections= Section.objects.all()
     today_date = datetime.date.today()
 
     data ={
-        'img':img,
+        'sections':sections,
         'today_date': today_date
         }
 
     return render(request,'index.html',data)
 
 def description(request,aid):
-    img = Section.objects.get(id=aid)
+    course=Section.objects.get(id=aid).course_id
+    if request.method =="POST":
+        comment=request.POST.get('comment')
+        name=request.POST.get('name')
+        
+        
+        a=Review(comment=comment,name=name,course_id=course)
+        a.save()
+
+        
+    massage= Review.objects.filter(course_id=course)
+    section = Section.objects.get(id=aid)
     data ={
-        'img':img
+        'section':section,
+        'massage':massage
         }
 
     return render(request, 'description.html', data)

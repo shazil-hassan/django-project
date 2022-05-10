@@ -18,9 +18,9 @@
             <div class="row align-items-center">
                 <div class="col-xl-7 col-lg-7 col-md-12">
                     <div>
-                        <h1 class="text-white display-4 fw-semi-bold">Getting Started with Short Course</h1>
+                        <h1 class="text-white display-4 fw-semi-bold">{{section.course.course_name}}</h1>
                         <p class="text-white mb-6 lead">
-                            {{img.course.course_name}}  is the popular programming language which powers web pages and web applications. This course will get you started coding in  {{img.course.course_name}} .
+                            {{section.course.course_name}}  is the popular programming language which powers web pages and web applications. This course will get you started coding in  {{section.course.course_name}} .
                         </p>
                         <div class="d-flex align-items-center">
                             <a href="#" class="bookmark text-white text-decoration-none">
@@ -250,7 +250,7 @@
                                                 </li>
                                                 <!-- List group item -->
                                                 
-                                                {{img.course.course_outline | safe}}
+                                                {{section.course.course_outline | safe}}
                                                 
                                                 
                                                 
@@ -264,9 +264,9 @@
                                 <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
                                     <!-- Description -->
                                     <div class="mb-4">
-                                        <h2 class="mb-2">{{img.course.course_name | safe}}</h2>
+                                        <h2 class="mb-2">{{section.course.course_name | safe}}</h2>
                                         <p>
-                                           {{img.course.description | safe}}
+                                           {{section.course.description | safe}}
                                         </p>
                                         
                                     </div>
@@ -282,109 +282,46 @@
                                     </div>
                                     
                                 </div>
+                                {% comment %} Review {% endcomment %}
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                     <!-- Reviews -->
-                                    <div class="mb-3">
-                                        <h3 class="mb-4">How students rated this courses</h3>
-                                        <div class="row align-items-center">
-                                            <div class="col-auto text-center">
-                                                <h3 class="display-2 fw-bold">4.5</h3>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1-half text-warning"></i>
-                                                <p class="mb-0 fs-6">(Based on 27 reviews)</p>
-                                            </div>
-                                            <!-- Progress bar -->
-                                            <div class="col pt-3 order-3 order-md-2">
-                                                <div class="progress mb-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-0" style="height: 6px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-auto col-6 order-2 order-md-3">
-                                                <!-- Rating -->
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <span class="ms-1">53%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">36%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">9%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">3%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">2%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
+                                 
+                                    
                                     <!-- hr -->
-                                    <hr class="my-5" />
+                                   
                                     <div class="mb-3">
-                                        <div class="d-lg-flex align-items-center justify-content-between mb-5">
+                                        <div>
                                             <!-- Reviews -->
                                             <div class="mb-3 mb-lg-0">
                                                 <h3 class="mb-0">Reviews</h3>
-                                            </div>
+                                            </div><br>
                                             <div>
                                                 <!-- Form -->
-                                                <form class="form-inline">
-                                                    <div class="d-flex align-items-center me-2">
-                                                        <span class="position-absolute ps-3">
-                              <i class="fe fe-search"></i>
-                            </span>
-                                                        <input type="search" class="form-control ps-6" placeholder="Search Review" />
-                                                    </div>
+                                                <form method ="POST" action="">
+                                                    {%csrf_token%}
+                                                    <div class="form-group">
+                                                        <label >Name:</label>
+                                                      
+                                                        <input tpye="text" name="name" required>
+                                                    </div><br>
+                                                    <div>
+                                                        <label >Comment</label>
+                                                        <input tpye="text" class="form-control"name="comment" required>
+                                                        </div><br>     
+                                                    <button type="submit" class="btn btn-primary">Submit</button>  <br> 
+                                                        
+                                                    
                                                 </form>
-                                            </div>
+                                            </div><br>
                                         </div>
                                         <!-- Rating -->
+                                        {% for msg in massage %}
                                         <div class="d-flex border-bottom pb-4 mb-4">
                                             <img src="../assets/images/avatar/avatar-2.jpg" alt="" class="rounded-circle avatar-lg" />
                                             <div class=" ms-3">
                                                 <h4 class="mb-1">
-                                                    Max Hawkins
+                                                    {{msg.name}}
                                                     <span class="ms-1 fs-6 text-muted">2 Days ago</span>
                                                 </h4>
                                                 <div class="fs-6 mb-2">
@@ -394,83 +331,16 @@
                                                     <i class="mdi mdi-star me-n1 text-warning"></i>
                                                     <i class="mdi mdi-star me-n1 text-warning"></i>
                                                 </div>
-                                                <p>Lectures were at a really good pace and I never felt lost. The instructor was well informed and allowed me to learn and navigate Figma easily.</p>
-                                                <div class="d-lg-flex">
-                                                    <p class="mb-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-lg-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-white ms-1">No</a>
-                                                </div>
+                                                {{msg.comment}}
+                                                
                                             </div>
                                         </div>
+                                        {% endfor %}
                                         <!-- Rating -->
-                                        <div class="d-flex border-bottom pb-4 mb-4">
-                                            <img src="../assets/images/avatar/avatar-3.jpg" alt="" class="rounded-circle avatar-lg" />
-                                            <div class=" ms-3">
-                                                <h4 class="mb-1">Arthur Williamson <span class="ms-1 fs-6 text-muted">3 Days ago</span>
-                                                </h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>Its pretty good.Just a reminder that there are also students with Windows, meaning Figma its a bit different of yours. Thank you!</p>
-                                                <div class="d-lg-flex">
-                                                    <p class="mb-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-lg-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-white ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <!-- Rating -->
-                                        <div class="d-flex border-bottom pb-4 mb-4">
-                                            <img src="../assets/images/avatar/avatar-4.jpg" alt="" class="rounded-circle avatar-lg" />
-                                            <div class=" ms-3">
-                                                <h4 class="mb-1">Claire Jones <span class="ms-1 fs-6 text-muted">4 Days ago</span></h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>
-                                                    Great course for learning Figma, the only bad detail would be that some icons are not included in the assets. But 90% of the icons needed are included, and the voice of the instructor was very clear and easy to understood.
-                                                </p>
-                                                <div class="d-lg-flex">
-                                                    <p class="mb-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-lg-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-white ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Rating -->
-                                        <div class="d-flex">
-                                            <img src="../assets/images/avatar/avatar-5.jpg" alt="" class="rounded-circle avatar-lg" />
-                                            <div class=" ms-3">
-                                                <h4 class="mb-1">
-                                                    Bessie Pena
-                                                    <span class="ms-1 fs-6 text-muted">5 Days ago</span>
-                                                </h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>
-                                                    I have really enjoyed this class and learned a lot, found it very inspiring and helpful, thank you!
-
-                                                </p>
-                                                <div class="d-lg-flex">
-                                                    <p class="mb-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-lg-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-white ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="transcript" role="tabpanel" aria-labelledby="transcript-tab">
@@ -565,7 +435,7 @@
                         <div class="p-1">
                             <div class="d-flex justify-content-center position-relative rounded py-10 border-white border rounded-3 bg-cover" style="background-image: url(../assets/images/course/course-javascript.jpg);">
                               <a  class="card-img-top"><img
-                                src="../{{img.course.course_image}}" alt=""
+                                src="../{{section.course.course_image}}" alt=""
                                 class="rounded-top-md card-img-top" width="200" height="200"></a>
                             </div>
                         </div>
@@ -573,11 +443,11 @@
                         <div class="card-body">
                             <!-- Price single page -->
                             <div class="mb-3">
-                                <span class="text-dark fw-bold h2">{{img.course.price}}</span>
+                                <span class="text-dark fw-bold h2">{{section.course.price}}</span>
                                 {% comment %} <del class="fs-4 text-muted">$750</del> {% endcomment %}
                             </div>
                             <div class="d-grid">
-                            <a href="/applyform/{{img.id}}" class="btn btn-primary mb-2  ">Apply</a>
+                            <a href="/applyform/{{section.id}}" class="btn btn-primary mb-2  ">Apply</a>
                             
                         </div>
                         </div>
@@ -655,11 +525,11 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Card -->
                         <div class="card mb-4 card-hover">
-                            <a  class="card-img-top"><img src="../{{img.course.course_image}}" alt="" class="card-img-top rounded-top-md" /></a>
+                            <a  class="card-img-top"><img src="../{{section.course.course_image}}" alt="" class="card-img-top rounded-top-md" /></a>
                             <!-- Card body -->
                             <div class="card-body">
                                 <h4 class="mb-2 text-truncate-line-2"><a  class="text-inherit">How to
-                    easily create a website with {{img.course.course_name}}</a></h4>
+                    easily create a website with {{section.course.course_name}}</a></h4>
                                 <ul class="mb-3 list-inline">
                                     <li class="list-inline-item"><i class="far fa-clock me-1"></i>3h 56m</li>
                                     <li class="list-inline-item">
@@ -686,7 +556,7 @@
                             <div class="card-footer">
                                 <div class="row align-items-center g-0">
                                     <div class="col-auto">
-                                        <img src="../{{img.course.course_image}}" class="rounded-circle avatar-xs" alt="" />
+                                        <img src="../{{section.course.course_image}}" class="rounded-circle avatar-xs" alt="" />
                                     </div>
                                     <div class="col ms-2">
                                         <span>Morris Mccoy</span>
