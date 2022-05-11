@@ -113,6 +113,7 @@ class Enrollment(models.Model):
 
 class Review(models.Model):
     course= models.ForeignKey(Course,on_delete=models.CASCADE)
+    reply= models.ForeignKey('self',on_delete=models.CASCADE,null=True, related_name="replies")
     comment = models.TextField(max_length=200)   
     name= models.CharField(max_length=50,blank=True,null=True) 
     pub_date= models.DateField(auto_now=True,auto_now_add=False, null=True)

@@ -32,17 +32,24 @@ def description(request,aid):
     if request.method =="POST":
         comment=request.POST.get('comment')
         name=request.POST.get('name')
+        reply_id=request.POST.get('review_id')
+        
+        if reply_id:
+            comment_reply=Review.objects.get(id=reply_id)
+
         
         
-        a=Review(comment=comment,name=name,course_id=course)
+        a=Review(comment=comment,name=name,course_id=course,reply=comment_reply)
         a.save()
 
         
     massage= Review.objects.filter(course_id=course)
+    
     section = Section.objects.get(id=aid)
     data ={
         'section':section,
-        'massage':massage
+        'massage':massage,
+        
         }
 
     return render(request, 'description.html', data)

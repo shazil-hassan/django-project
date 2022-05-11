@@ -1541,6 +1541,7 @@
 		</div>
 	</div>
 </nav>
+
     <!-- Content -->
 
     <!-- Footer -->
@@ -1592,6 +1593,9 @@
 	
 	<!-- Theme JS -->
 	<script src="{% static 'assets/js/theme.min.js' %}"></script>
+	$('.reply-btn').click(function(){
+		$(this).parent().parent().next('.replied-comment')..fadeToggle()
+	})
 
 {%block body%}
 {%endblock body%} 
