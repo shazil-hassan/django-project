@@ -33,7 +33,7 @@ def description(request,aid):
         comment=request.POST.get('comment')
         name=request.POST.get('name')
         reply_id=request.POST.get('review_id')
-        
+        comment_reply=None
         if reply_id:
             comment_reply=Review.objects.get(id=reply_id)
 
@@ -43,7 +43,7 @@ def description(request,aid):
         a.save()
 
         
-    massage= Review.objects.filter(course_id=course)
+    massage= Review.objects.filter(course_id=course, reply=None)
     
     section = Section.objects.get(id=aid)
     data ={

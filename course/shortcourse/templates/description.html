@@ -326,7 +326,12 @@
                                     </div>
 
                                 </div>
+
+
                                 {% comment %} Review {% endcomment %}
+
+
+
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                     <!-- Reviews -->
 
@@ -345,36 +350,42 @@
                                         <!-- Rating -->
                                         {% for msg in massage %}
                                         <div class="row">
+                                            <input type="hidden" value="{{msg.id}}"id="parent_id">
                                             <div class="col-md-12">
-                                                <div class="d-flex border-bottom pb-4 mb-4">
-                                                    <img src="../assets/images/avatar/avatar-2.jpg" alt=""
-                                                        class="rounded-circle avatar-lg" />
-                                                    <div class=" ms-3">
-                                                        <h4 class="mb-1">
-                                                            {{msg.name}}
-                                                            <span class="ms-1 fs-6 text-muted">2 Days ago</span>
-                                                        </h4>
-
-                                                        {{msg.comment}}
-                                                        <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm mx-2">Reply</button><br>
-
+                                                <div class="">
+                                                    <div class="row">
+                                                        <div class=" col-md-1">
+                                                            <img src="../{{msg.course.course_image}}" alt=""
+                                                                class="rounded-circle avatar-lg" />
+                                                        </div>
+                                                        <div class="col-md-11 my-auto">
+                                                            <div class=" ms-3">
+                                                                <h4 class="mb-1">
+                                                                    {{msg.name}}
+                                                                    <span class="ms-1 fs-6 text-muted">2 Days ago</span>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <div class="pt-2" style="padding-left:20px;">
+                                                           <h4>{{msg.comment}}</h4>
+                                                            <button type="button" name="button"
+                                                                class="reply-btn btn btn-outline-dark btn-sm ">Reply</button><br>
+                                                    </div>
+                                                        </div>
                                                     
-                                                    {% comment %} {%for rpl in review.replies.all%}
-                                                    <div class=" ms-3">
-                                                        <h4 class="mb-1">
-                                                            {{rpl.comment}}
 
-                                                        </h4>
-
-
-
+                                                    {%for rpl in msg.replies.all%}
+                                                    <div class"row" style="padding-left:40px;">
+                                                            <h5 class="mb-1 mt-2">
+                                                                {{rpl.comment}}
+                                                            </h5>
                                                     </div>
-                                                    {%endfor%} {% endcomment %}
+                                                    {%endfor%}
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <div class="replied-comment container mt-4" >
+                                                    <div class="replied-comment container mt-4">
 
                                                         <div class="form-group col">
 
@@ -387,11 +398,12 @@
 
                                                                     <label>reply</label>
                                                                     <input tpye="text" class="form-control"
-                                                                        name="comment" required>
-                                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                                        name="comment" required><br>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Submit</button>
                                                                 </div><br>
-                                                             
-                                                                
+
+
 
 
                                                             </form>
@@ -411,6 +423,15 @@
 
                                     </div>
                                     <div>
+                                        
+                                        <div>
+                                            <!-- Reviews -->
+                                            <div class="mb-3 mb-lg-0">
+                                                <h2 class="mb-0">Comment</h2>
+                                            </div><br>
+
+                                        </div>
+                                      
                                         <!-- Form -->
                                         <form method="POST" action="">
                                             {%csrf_token%}
@@ -432,7 +453,7 @@
 
 
 
-                                
+
                                 <div class="tab-pane fade" id="transcript" role="tabpanel"
                                     aria-labelledby="transcript-tab">
                                     <!-- Description -->

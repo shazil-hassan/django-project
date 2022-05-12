@@ -1593,9 +1593,11 @@
 	
 	<!-- Theme JS -->
 	<script src="{% static 'assets/js/theme.min.js' %}"></script>
-	$('.reply-btn').click(function(){
-		$(this).parent().parent().next('.replied-comment')..fadeToggle()
-	})
+	<script>$('.reply-btn').click(function(){
+		{% comment %} $(this).parent().parent().next('.replied-comment').fadeToggle() {% endcomment %}
+		var x =$('#parent_id').val();
+		console.log (x)
+	});</script>
 
 {%block body%}
 {%endblock body%} 
