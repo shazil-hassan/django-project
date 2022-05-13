@@ -1593,11 +1593,14 @@
 	
 	<!-- Theme JS -->
 	<script src="{% static 'assets/js/theme.min.js' %}"></script>
-	<script>$('.reply-btn').click(function(){
-		{% comment %} $(this).parent().parent().next('.replied-comment').fadeToggle() {% endcomment %}
-		var x =$('#parent_id').val();
-		console.log (x)
-	});</script>
+	<script>
+		function myfun(id){
+			document.getElementById('replyform');
+			$('#formcomment').focus();
+			$('#abc').val(id);
+			
+		}
+	</script>
 
 {%block body%}
 {%endblock body%} 

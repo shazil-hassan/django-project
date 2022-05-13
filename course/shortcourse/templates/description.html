@@ -334,121 +334,98 @@
 
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                     <!-- Reviews -->
-
-
-
-                                    <!-- hr -->
-
                                     <div class="mb-3">
-                                        <div>
                                             <!-- Reviews -->
-                                            <div class="mb-3 mb-lg-0">
-                                                <h3 class="mb-0">Reviews</h3>
-                                            </div><br>
-
+                                        <div class="mb-3 mb-lg-0">
+                                            <h3 class="mb-0">Reviews</h3>
                                         </div>
+
                                         <!-- Rating -->
                                         {% for msg in massage %}
-                                        <div class="row">
-                                            <input type="hidden" value="{{msg.id}}"id="parent_id">
-                                            <div class="col-md-12">
-                                                <div class="">
-                                                    <div class="row">
-                                                        <div class=" col-md-1">
-                                                            <img src="../{{msg.course.course_image}}" alt=""
-                                                                class="rounded-circle avatar-lg" />
-                                                        </div>
-                                                        <div class="col-md-11 my-auto">
-                                                            <div class=" ms-3">
-                                                                <h4 class="mb-1">
-                                                                    {{msg.name}}
-                                                                    <span class="ms-1 fs-6 text-muted">2 Days ago</span>
-                                                                </h4>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" value="{{msg.id}}"id="parent_id">
+                                                    <div class="col-md-12">
+                                                            <div class="row mb-2">
+                                                                <div class=" col-md-1">
+                                                                    <img src="../{{msg.course.course_image}}" alt=""
+                                                                        class="rounded-circle avatar-lg" />
+                                                                </div>
+                                                                <div class="col-md-6 my-auto">
+                                                                    <div>
+                                                                        <h5 class="mb-1 mt-auto">
+                                                                            {{msg.name}}
+                                                                            <span class="ms-1 fs-6 text-muted">{{msg.pub_date}}</span>
+                                                                        </h5>
+                                                                        <h4> {{msg.comment}}</h4>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                
+                                                                <div class="col-md-4">
+                                                                    <a id="myreply" onclick="myfun({{msg.id}})">Reply</a>
+                                                                </div>
+                                                               
                                                             </div>
-                                                        </div>
                                                     </div>
-                                                    <div class="pt-2" style="padding-left:20px;">
-                                                           <h4>{{msg.comment}}</h4>
-                                                            <button type="button" name="button"
-                                                                class="reply-btn btn btn-outline-dark btn-sm ">Reply</button><br>
-                                                    </div>
-                                                        </div>
-                                                    
-
+                                                </div>
+                                                
+                                                <div class="col-md-12"style="padding-left:70px;">
                                                     {%for rpl in msg.replies.all%}
                                                     <div class"row" style="padding-left:40px;">
-                                                            <h5 class="mb-1 mt-2">
-                                                                {{rpl.comment}}
-                                                            </h5>
+                                                        <h5 class="mb-1 mt-2">
+                                                            {% if rpl.name %}
+                                                                {{rpl.name}}
+                                                                {%else%}
+                                                                    Anonymous
+                                                            
+                                                            {% endif %}
+                                                        </h5>
+                                                        <h5 class="mb-1 mt-2"style="padding-left:30px;">
+                                                            {{rpl.comment}}
+                                                        <h5>
+                                                            
+
                                                     </div>
                                                     {%endfor%}
                                                 </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="replied-comment container mt-4">
-
-                                                        <div class="form-group col">
-
-                                                            <!-- Form -->
-                                                            <form method="POST" action="">
-                                                                {%csrf_token%}
-                                                                <input type="hidden" name="review_id" value="{{ msg.id }}">
-                                                                <div class="form-group">
-
-
-                                                                    <label>reply</label>
-                                                                    <input tpye="text" class="form-control"
-                                                                        name="comment" required><br>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Submit</button>
-                                                                </div><br>
-
-
-
-
-                                                            </form>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div><br>
                                             </div>
-                                        </div>
+
+
 
                                         {% endfor %}
                                         <!-- Rating -->
 
-                                        <!-- Rating -->
+                                        <div id="replyform">
+                                            <!-- Reviews -->
+                                            <div class="mb-3 mb-lg-0 mt-2">
+                                                <h2 class="mb-0">Comment</h2>
+                                            </div>
+                                            <!-- Form -->
+
+                                            <form method="POST" action="">
+                                                {%csrf_token%}
+                                                <input type="hidden" name="review_id" id="abc">
+                                                <div class="form-group mt-3">
+                                                    <label>Name:</label>
+                                        
+                                                    <input tpye="text" name="name" >
+                                                </div>
+                                                <div>
+                                                    <label>Comment</label>
+                                                    <input tpye="text" class="form-control" name="comment" required id="formcomment">
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary btn-sm mt-2" >Submit</button>
+                                                </div>
+                                                
+                                        
+                                        
+                                            </form>
+                                        </div>
 
 
                                     </div>
-                                    <div>
-                                        
-                                        <div>
-                                            <!-- Reviews -->
-                                            <div class="mb-3 mb-lg-0">
-                                                <h2 class="mb-0">Comment</h2>
-                                            </div><br>
-
-                                        </div>
-                                      
-                                        <!-- Form -->
-                                        <form method="POST" action="">
-                                            {%csrf_token%}
-                                            <div class="form-group">
-                                                <label>Name:</label>
-
-                                                <input tpye="text" name="name" required>
-                                            </div><br>
-                                            <div>
-                                                <label>Comment</label>
-                                                <input tpye="text" class="form-control" name="comment" required>
-                                            </div><br>
-                                            <button type="submit" class="btn btn-primary">Submit</button> <br>
-
-
-                                        </form>
-                                    </div><br>
                                 </div>
 
 
