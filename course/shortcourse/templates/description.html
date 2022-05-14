@@ -91,8 +91,11 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
+
+                        <!-- Card Body -->{% comment %} Review {% endcomment %}
+
+
+                        <div class="card-body" style="overflow-x: scroll;">
                             <div class="tab-content" id="tabContent">
                                 <div class="tab-pane fade show active" id="table" role="tabpanel"
                                     aria-labelledby="table-tab">
@@ -328,8 +331,21 @@
                                 </div>
 
 
-                                {% comment %} Review {% endcomment %}
 
+
+                                <style> 
+                                    .dropdown-toggle:after{
+                                        float:none;
+                                        margin-left:0px;
+                                        vertical-align:0px;
+                                    }
+                                    @media(min-width: 350px){
+                                        tab-pane fade{
+                                        background-color: blue;
+                                        }
+                                        }
+                                </style>
+                               
 
 
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -345,13 +361,12 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-12">
                                                     <input type="hidden" value="{{msg.id}}"id="parent_id">
-                                                    <div class="col-md-12">
                                                             <div class="row mb-2">
-                                                                <div class=" col-md-1">
+                                                                <div class="col-md-1 col-sm-3">
                                                                     <img src="../{{msg.course.course_image}}" alt=""
                                                                         class="rounded-circle avatar-lg" />
                                                                 </div>
-                                                                <div class="col-md-6 my-auto">
+                                                                <div class="col-md-5 col-sm-4">
                                                                     <div>
                                                                         <h5 class="mb-1 mt-auto">
                                                                             {{msg.name}}
@@ -362,17 +377,27 @@
                                                                     
                                                                 </div>
                                                                 
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-3 col-sm-2 mt-3">
                                                                     <a id="myreply" onclick="myfun({{msg.id}})">Reply</a>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-sm-2">    
+                                                                    {%if msg.replies.all %}
+                                                                        <a class="nav-link dropdown-toggle show" id="myreplyclose"onclick="myfun1({{msg.id}})" data-bs-toggle="dropdown" >
+                                                                            Show Reply
+                                                                        </a>
+                                                                    {%endif%}
+                                                                      
                                                                 </div>
                                                                
                                                             </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 
-                                                <div class="col-md-12"style="padding-left:70px;">
+                                                <div class="col-md-12"style="padding-left:70px; display:none;" id="{{msg.id}}" >
+                                                    
                                                     {%for rpl in msg.replies.all%}
-                                                    <div class"row" style="padding-left:40px;">
+                                                    <div class"row" style="padding-left:40px;" >
                                                         <h5 class="mb-1 mt-2">
                                                             {% if rpl.name %}
                                                                 {{rpl.name}}

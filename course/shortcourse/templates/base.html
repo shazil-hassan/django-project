@@ -1600,6 +1600,25 @@
 			$('#abc').val(id);
 			
 		}
+		function myfun1(id){
+			
+			//var x=  $('#'+id).css("display","none");
+			var x=document.getElementById(id)
+				if(x.style.display==='none'){
+					$('#'+id).css("display", "block");
+				}else
+				{
+
+				
+				$('#'+id).css("display", "none");
+				}
+		
+			$(id).val(id);
+
+			
+			
+		
+		}
 	</script>
 
 {%block body%}
