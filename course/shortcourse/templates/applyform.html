@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 {%block body%}
 <div class="mt-8 mb-12 px-20">
@@ -11,7 +12,7 @@
         <form method="post" action="">
             {% csrf_token %}
 
-            {{form.as_p}}
+            {{form|crispy}}
            <!-- input -->
           {% comment %} <div class="mb-3">
             <label class="form-label" for="first_name">First Name <span class="text-danger">*</span></label>
@@ -46,9 +47,9 @@
               <div> {% endcomment %}
                 <!-- button -->
                 <div>
-                <button class="btn btn-primary" type="submit">Submit
+                <button class="btn btn-primary mt-4" type="submit">Submit
                   Application</button>
-                  <button type="button" class="btn btn-success mx-10"><a  href="/" >Back</a> </button>
+                  <button type="button" class="btn btn-success mt-4 "><a  href="/" >Back</a> </button>
 
               </div>
         </form>

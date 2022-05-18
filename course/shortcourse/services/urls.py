@@ -9,6 +9,7 @@ urlpatterns = [
 
   path('about',views.about,name='about'),
   path('description/<aid>',views.description, name='description'),
+  path('like',views.like,name='like'),
   path('applyform/<aid>',views.applyform),
   path('list', StudentList.as_view(),name='list'),
   path('<id>',StudentList.as_view(),name='list_id'),

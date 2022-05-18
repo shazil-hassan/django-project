@@ -34,6 +34,8 @@
 <link href="{% static 'assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet">
 <link href="{% static 'assets/libs/tippy.js/dist/tippy.css' %}" rel="stylesheet">
 <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css' %}"
+     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 
 
@@ -1609,16 +1611,32 @@
 				}else
 				{
 
-				
 				$('#'+id).css("display", "none");
 				}
 		
 			$(id).val(id);
 
+	}
+	function showfun(data,id){
+		var x = document.getElementById(id+"_like");
+		var y = document.getElementById(id+"_dislike");
+		if(data =="1"){
+			$(x).css("display", "block");
+			$(y).css("display", "none");
+			$(x).load();
 			
-			
-		
 		}
+		else
+		{
+			$(y).css("display", "block");
+			$(x).css("display", "none");
+			
+			//$("#xyz").click(function () {
+				//$(y).load();
+			//});
+		}
+
+	}
 	</script>
 
 {%block body%}

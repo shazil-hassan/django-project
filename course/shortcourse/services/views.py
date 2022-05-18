@@ -1,11 +1,16 @@
 import email
+from re import L
 from sqlite3 import Date
+from django.http import *
 from django.shortcuts import render,redirect,HttpResponse
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from .form import Userform
 import datetime
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
+
+
 # from .forms import  Userform
 
 
@@ -33,17 +38,14 @@ def description(request,aid):
         comment=request.POST.get('comment')
         name=request.POST.get('name')
         reply_id=request.POST.get('review_id')
-        comment_reply=None
-        if reply_id:
-            comment_reply=Review.objects.get(id=reply_id)
-
+        if name == "":
+            name = "Anonymous"
         
-        
-        a=Review(comment=comment,name=name,course_id=course,reply=comment_reply)
+        a=Review(comment=comment,name=name,course_id=course,parent_id=reply_id)
         a.save()
 
         
-    massage= Review.objects.filter(course_id=course, reply=None)
+    massage= Review.objects.filter(course_id=course, parent=None)
     
     section = Section.objects.get(id=aid)
     data ={
@@ -52,8 +54,29 @@ def description(request,aid):
         
         }
 
-    return render(request, 'description.html', data)
+    return render(request,'description.html', data)
 
+@csrf_exempt
+def like(request):
+ 
+    if request.method=="POST":
+        id=request.POST.get('id')
+        response=request.POST.get('value')
+
+        r=Review.objects.get(id=id)
+
+        if response == "1":
+            r.likes= r.likes+1            
+        else:
+            r.dislikes = r.dislikes+1        
+        r.save()
+        data=response
+       
+        
+    return HttpResponse(data)
+    # return JsonResponse(data)
+
+ 
 
 def applyform(request,aid):
 

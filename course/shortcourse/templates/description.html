@@ -374,7 +374,21 @@
                                                                         </h5>
                                                                         <h4> {{msg.comment}}</h4>
                                                                     </div>
-                                                                    
+                                                                     
+                                                                   
+                                                                    <div class="row mt-2" id="xyz">
+                                                                        
+                                                                        <div class="col-md-3">
+                                                                            <i class="fa fa-thumbs-up fa-2xl" style="Font-size:22px;"  onclick="likefun({{msg.id}},1)" id="{{msg.id}}_like" name="comment_like" > <spam style=Font-size:16px;>{{msg.likes}}</spam></i>
+
+                                                                        </div> 
+                                                                        <div class="col-md-9">
+                                                                            <i class="fa fa-thumbs-down fa-2xl" style="Font-size:22px;" onclick="likefun({{msg.id }},0)"id="{{msg.id}}_dislike" name="comment_dislike" > <spam style=Font-size:16px;>{{msg.dislikes}}</spam></i>
+                                                                        </div>
+                                                                    </div>
+                                                                        
+                                                                        
+                                                                       
                                                                 </div>
                                                                 
                                                                 <div class="col-md-3 col-sm-2 mt-3">
@@ -394,23 +408,29 @@
                                                     
                                                 </div>
                                                 
-                                                <div class="col-md-12"style="padding-left:70px; display:none;" id="{{msg.id}}" >
+                                                <div class="col-md-12"style="padding-left:70px; display:none;" id="{{msg.id}}">
                                                     
                                                     {%for rpl in msg.replies.all%}
-                                                    <div class"row" style="padding-left:40px;" >
+                                                    <div class"row" style="padding-left:40px;">
                                                         <h5 class="mb-1 mt-2">
-                                                            {% if rpl.name %}
+                                                        
                                                                 {{rpl.name}}
-                                                                {%else%}
-                                                                    Anonymous
-                                                            
-                                                            {% endif %}
-                                                        </h5>
+                                                           </h5>
                                                         <h5 class="mb-1 mt-2"style="padding-left:30px;">
                                                             {{rpl.comment}}
-                                                        <h5>
-                                                            
+                                                        </h5>
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-2">
+                                                                <i class="fa fa-thumbs-up fa-xl " style="Font-size:22px;"  onclick="likefun({{rpl.id}},1)" id="{{rpl.id}}_like" name="comment_like"> <spam style=Font-size:16px;>{{rpl.likes}}</spam></i>
 
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <i class="fa fa-thumbs-down fa-xl " style="Font-size:22px;" onclick="likefun({{rpl.id }},0)"id="{{rpl.id}}_dislike" name="comment_dislike"> <spam style=Font-size:16px;>{{rpl.dislikes}}</spam></i>
+
+                                                            </div>
+                                                        </div>    
+                                                      
+                                                       
                                                     </div>
                                                     {%endfor%}
                                                 </div>
@@ -434,7 +454,7 @@
                                                 <div class="form-group mt-3">
                                                     <label>Name:</label>
                                         
-                                                    <input tpye="text" name="name" >
+                                                    <input tpye="text" name="name" value="">
                                                 </div>
                                                 <div>
                                                     <label>Comment</label>
@@ -676,6 +696,7 @@
             <!-- Card -->
 
             <div class="pt-12 pb-3">
+
                 <div class="row d-md-flex align-items-center mb-4">
                     <div class="col-12">
                         <h2 class="mb-0">Related Courses</h2>
@@ -736,6 +757,28 @@
                     </div>
 
 
+
+
+
+<script>
+        function likefun(id, value){
+            var obj = {
+                id:id,
+                value:value
+            };
+            
+            $.ajax({
+                type:"POST",
+                url: "{% url 'like' %}",
+                dataType:"json",
+                data:obj,
+                success: function (data) {
+                    showfun(data,id)
+                   
+                }  
+            })   
+        }
+</script>
 
 
 
