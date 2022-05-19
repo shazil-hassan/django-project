@@ -1621,22 +1621,19 @@
 		var x = document.getElementById(id+"_like");
 		var y = document.getElementById(id+"_dislike");
 		if(data =="1"){
-			$(x).css("display", "block");
-			$(y).css("display", "none");
-			$(x).load();
+			$(x).show();
+			$(y).hide();
 			
 		}
 		else
 		{
-			$(y).css("display", "block");
-			$(x).css("display", "none");
-			
-			//$("#xyz").click(function () {
-				//$(y).load();
-			//});
+			$(y).show();
+			$(x).hide();
 		}
+	
 
 	}
+
 	</script>
 
 {%block body%}

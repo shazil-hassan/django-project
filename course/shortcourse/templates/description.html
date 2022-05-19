@@ -376,13 +376,13 @@
                                                                     </div>
                                                                      
                                                                    
-                                                                    <div class="row mt-2" id="xyz">
+                                                                    <div class="row mt-2" id="like_xyz">
                                                                         
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-4">
                                                                             <i class="fa fa-thumbs-up fa-2xl" style="Font-size:22px;"  onclick="likefun({{msg.id}},1)" id="{{msg.id}}_like" name="comment_like" > <spam style=Font-size:16px;>{{msg.likes}}</spam></i>
 
                                                                         </div> 
-                                                                        <div class="col-md-9">
+                                                                        <div class="col-md-8">
                                                                             <i class="fa fa-thumbs-down fa-2xl" style="Font-size:22px;" onclick="likefun({{msg.id }},0)"id="{{msg.id}}_dislike" name="comment_dislike" > <spam style=Font-size:16px;>{{msg.dislikes}}</spam></i>
                                                                         </div>
                                                                     </div>
@@ -419,7 +419,7 @@
                                                         <h5 class="mb-1 mt-2"style="padding-left:30px;">
                                                             {{rpl.comment}}
                                                         </h5>
-                                                        <div class="row mt-1">
+                                                        <div class="row mt-1" id="reply_xyz">
                                                             <div class="col-md-2">
                                                                 <i class="fa fa-thumbs-up fa-xl " style="Font-size:22px;"  onclick="likefun({{rpl.id}},1)" id="{{rpl.id}}_like" name="comment_like"> <spam style=Font-size:16px;>{{rpl.likes}}</spam></i>
 
@@ -773,9 +773,14 @@
                 dataType:"json",
                 data:obj,
                 success: function (data) {
+          
                     showfun(data,id)
+                    
+                    $("#like_xyz").load(" #like_xyz")
+                    $("#reply_xyz").load(" #reply_xyz")	
                    
-                }  
+                } 
+                
             })   
         }
 </script>
