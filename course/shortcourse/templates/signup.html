@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<style>
+  li {
+    color: red;
+  }
+
+</style>
+<div class="container d-flex flex-column mt-7">
+  <div class="row align-items-center justify-content-center g-0 min-vh-100">
+    <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+      <!-- Card -->
+      <div class="card shadow">
+        <!-- Card body -->
+        <div class="card-body p-6">
+          <div class="mb-4">
+            <a href="../index.html"
+              ><img
+                src="../assets/images/brand/logo/logo-icon.svg"
+                class="mb-4"
+                alt=""
+            /></a>
+            <h1 class="mb-1 fw-bold">Sign up</h1>
+            <span
+              >Already have an account?
+              <a href="{% url 'login' %}" class="ms-1">Sign in</a></span
+            >
+          </div>
+          <!-- Form -->
+          <form method="post">
+            <!-- Username -->
+            {% csrf_token %} {{ form.as_p }}
+            <!-- Checkbox -->
+            <div
+              class="d-lg-flex justify-content-between align-items-center mb-4"
+            >
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberme"
+                />
+                <label class="form-check-label" for="rememberme"
+                  >I agree to the Terms of Service and Privacy Policy.</label
+                >
+              </div>
+             
+            </div>
+            <div>
+              <!-- Button -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Sign up</button>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <div class="mt-4 text-center">
+              <!--Facebook-->
+              <a href="#" class="btn-social btn-social-outline btn-facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <!--Twitter-->
+              <a href="#" class="btn-social btn-social-outline btn-twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <!--LinkedIn-->
+              <a href="#" class="btn-social btn-social-outline btn-linkedin">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <!--GitHub-->
+              <a href="#" class="btn-social btn-social-outline btn-github">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var element = document.getElementById("id_email");
+  var element1 = document.getElementById("id_first_name");
+  var element2 = document.getElementById("id_last_name");
+  var element3 = document.getElementById("id_educational_background");
+  var element4 = document.getElementById("id_password1");
+  var element5 = document.getElementById("id_password2");
+  // var element6 = document.getElementById("id_first_name");
+ 
+  element.classList.add("form-control");
+  element1.classList.add("form-control");
+  element2.classList.add("form-control");
+  element3.classList.add("form-control");
+  element4.classList.add("form-control");
+  element5.classList.add("form-control");
+  // element6.classList.add("form-control");
+</script>
+
+{%endblock body%}

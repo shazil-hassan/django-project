@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'services',
     'ckeditor',
-    'tinymce',
+    # 'tinymce',
     'djmoney',
     'crispy_forms',
     'django.contrib.admin',
@@ -73,6 +73,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shortcourse.wsgi.application'
+LOGIN_REDIRECT_URL = "/login-success"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Database

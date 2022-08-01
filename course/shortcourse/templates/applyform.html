@@ -7,49 +7,14 @@
 <div class="mt-8 mb-12 px-20">
     <div class="card bg-light shadow-none">
       <div class=" card-body p-md-5" >
-        <h3 class="mb-4">Apply for this Course </h3>
+        <h3 class="mb-4">We are trying to submit your request to enroll for  {{course_title}}</h3>
          <!-- form -->
         <form method="post" action="">
             {% csrf_token %}
-
-            {{form|crispy}}
-           <!-- input -->
-          {% comment %} <div class="mb-3">
-            <label class="form-label" for="first_name">First Name <span class="text-danger">*</span></label>
-            <input type="text" id="fisrt_name" class="form-control" name="first_name" placeholder="First Name" required>
-          </div>
-          <!-- input -->
-          <div class="mb-3">
-            <label class="form-label" for="last_name">Last Name <span class="text-danger">*</span></label>
-            <input type="text" id="last_name" class="form-control" name="last_name" placeholder="Last Name" required>
-          </div>
-          <!-- input -->
-          <div class="mb-3">
-            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
-            <input type="email" id="email" class="form-control"  name="email" placeholder="hello@example.com" required>
-          </div>
-    <!-- input -->
-          <div class="mb-3">
-            <label class="form-label" for="phone">Phone <span class="text-danger">*</span></label>
-            <input type="text" id="phone" class="form-control" name="contact"  placeholder="Enter Phone #" required>
-          </div>
-          <!-- input -->
-          <div class="mb-3">
-            <label class="form-label" for="cnic">cnic <span class="text-danger">*</span></label>
-            <input type="text" id="cnic" class="form-control" name="cnic"  placeholder="Enter CNIC #" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="educational_background">educational_background <span class="text-danger">*</span></label>
-            <input type="text" id="educational_background" class="form-control" name="educational_background"  placeholder="Enter Educational Background" required>
-          </div>
-          
-
-              <div> {% endcomment %}
                 <!-- button -->
                 <div>
-                <button class="btn btn-primary mt-4" type="submit">Submit
-                  Application</button>
-                  <button type="button" class="btn btn-success mt-4 "><a  href="/" >Back</a> </button>
+                <button class="btn btn-primary mt-4" type="submit">Are You sure to Apply?</button>
+                  <button type="button" class="btn btn-success mt-4 text-light"><a  href="/" >No</a></button>
 
               </div>
         </form>

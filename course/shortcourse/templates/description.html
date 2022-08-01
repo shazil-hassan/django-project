@@ -1,382 +1,256 @@
-{% extends 'base.html' %}
-{% load static %}
-{%block body%}
-
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %} {% load static %} {% block body %}
 
 <head>
+  <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}" />
+  <title>Course Details</title>
 
-    <title>Course Single | Geeks - Bootstrap 5 Template</title>
+  <style>
+    .dropdown-toggle:after {
+      float: none;
+      margin-left: 0px;
+      vertical-align: 0px;
+    }
+    @media (min-width: 350px) {
+      tab-pane fade {
+        background-color: blue;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Page header -->
+  <div class="pt-lg-8 pb-lg-16 pt-8 pb-12 bg-primary">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 col-md-12">
+          <div>
+            <h1 class="text-white display-4 fw-semi-bold">
+              {{course.course_name}}
+            </h1>
+            <p class="text-white mb-6 lead">{{course.description | safe}}</p>
+            <div class="d-flex align-items-center">
+              <a href="#" class="bookmark text-white text-decoration-none">
+                <i class="fe fe-bookmark text-white-50 me-2"></i>Bookmark
+              </a>
 
-    <!-- Page header -->
-    <div class="pt-lg-8 pb-lg-16 pt-8 pb-12 bg-primary">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-7 col-lg-7 col-md-12">
-                    <div>
-                        <h1 class="text-white display-4 fw-semi-bold">{{section.course.course_name}}</h1>
-                        <p class="text-white mb-6 lead">
-                            {{section.course.course_name}} is the popular programming language which powers web pages
-                            and web applications. This course will get you started coding in
-                            {{section.course.course_name}} .
-                        </p>
-                        <div class="d-flex align-items-center">
-                            <a href="#" class="bookmark text-white text-decoration-none">
-                                <i class="fe fe-bookmark text-white-50 me-2"></i>Bookmark
-                            </a>
-
-                            <span class="text-white ms-3"><i class="fe fe-user text-white-50"></i> 1200 Enrolled </span>
-                            <span class="ms-4">
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1-half text-warning"></i>
-                                <span class="text-white">(140)</span>
-                            </span>
-                            <span class="text-white ms-4 d-none d-md-block">
-                                <svg width="16" height="16" viewBox="0 0 16
-                              16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="8" width="2" height="6" rx="1" fill="#DBD8E9"></rect>
-                                    <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-                                    <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-                                </svg>
-                                <span class="align-middle">
-                                    Intermediate
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+              <span class="text-white ms-3"
+                ><i class="fe fe-user text-white-50"></i> 89 Enrolled
+              </span>
+              <span class="ms-4">
+                <i class="mdi mdi-star me-n1 text-warning"></i>
+                <i class="mdi mdi-star me-n1 text-warning"></i>
+                <i class="mdi mdi-star me-n1 text-warning"></i>
+                <i class="mdi mdi-star me-n1 text-warning"></i>
+                <i class="mdi mdi-star me-n1-half text-warning"></i>
+                <span class="text-white">(80)</span>
+              </span>
+              <span class="text-white ms-4 d-none d-md-block">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16
+                              16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3"
+                    y="8"
+                    width="2"
+                    height="6"
+                    rx="1"
+                    fill="#DBD8E9"
+                  ></rect>
+                  <rect
+                    x="7"
+                    y="5"
+                    width="2"
+                    height="9"
+                    rx="1"
+                    fill="#DBD8E9"
+                  ></rect>
+                  <rect
+                    x="11"
+                    y="2"
+                    width="2"
+                    height="12"
+                    rx="1"
+                    fill="#DBD8E9"
+                  ></rect>
+                </svg>
+                <span class="align-middle"> {{course.course_level}} </span>
+              </span>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Page content -->
-    <div class="pb-10">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-12 col-12 mt-n8 mb-4 mb-lg-0">
-                    <!-- Card -->
-                    <div class="card rounded-3">
-                        <!-- Card header -->
-                        <div class="card-header border-bottom-0 p-0">
-                            <div>
-                                <!-- Nav -->
-                                <ul class="nav nav-lb-tab" id="tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="table-tab" data-bs-toggle="pill" href="#table"
-                                            role="tab" aria-controls="table" aria-selected="true">Contents</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="description-tab" data-bs-toggle="pill"
-                                            href="#description" role="tab" aria-controls="description"
-                                            aria-selected="false">Description</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="review-tab" data-bs-toggle="pill" href="#review"
-                                            role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="transcript-tab" data-bs-toggle="pill" href="#transcript"
-                                            role="tab" aria-controls="transcript" aria-selected="false">Transcript</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="faq-tab" data-bs-toggle="pill" href="#faq" role="tab"
-                                            aria-controls="faq" aria-selected="false">FAQ</a>
-                                    </li>
-                                </ul>
-                            </div>
+  </div>
+  <!-- Page content -->
+  <div class="pb-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-12 mt-n8 mb-4 mb-lg-0">
+          <!-- Card -->
+          <div class="card rounded-3">
+            <!-- Card header -->
+            <div class="card-header border-bottom-0 p-0">
+              <div>
+                <!-- Nav -->
+                <ul class="nav nav-lb-tab" id="tab" role="tablist">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      id="outline-tab"
+                      data-bs-toggle="pill"
+                      href="#outline"
+                      role="tab"
+                      aria-controls="outlines"
+                      aria-selected="true"
+                      >Course Outline</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      id="instructor-tab"
+                      data-bs-toggle="pill"
+                      href="#instructors"
+                      role="tab"
+                      aria-controls="instructors"
+                      aria-selected="false"
+                      >Instructors</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      id="faq-tab"
+                      data-bs-toggle="pill"
+                      href="#faqs"
+                      role="tab"
+                      aria-controls="faq"
+                      aria-selected="false"
+                      >FAQ's</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      id="review-tab"
+                      data-bs-toggle="pill"
+                      href="#reviews"
+                      role="tab"
+                      aria-controls="reviews"
+                      aria-selected="false"
+                      >Reviews</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- style="overflow-x: scroll;" -->
+            <div class="card-body">
+              <div class="tab-content" id="tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="outline"
+                  role="tabpanel"
+                  aria-labelledby="outline-tab"
+                >
+                  <div>{{course.course_outline | safe}}</div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="instructors"
+                  role="tabpanel"
+                  aria-labelledby="instructor-tab"
+                >
+                  <div class="mb-4">
+                    {% for x in instructors %}
+                    <div class="d-flex border-bottom pb-4 mb-4">
+                      <img
+                        src="{% static 'assets/images/avatar.png' %}"
+                        alt=""
+                        class="rounded-circle avatar-lg"
+                      />
+                      <div class="ms-3">
+                        <h4 class="mb-1">
+                          {{x.first_name}}
+                          <span class="ms-1 fs-6 text-muted">2 Days ago</span>
+                        </h4>
+                        <div class="fs-6 mb-2">
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
                         </div>
-
-                        <!-- Card Body -->{% comment %} Review {% endcomment %}
-
-
-                        <div class="card-body" style="overflow-x: scroll;">
-                            <div class="tab-content" id="tabContent">
-                                <div class="tab-pane fade show active" id="table" role="tabpanel"
-                                    aria-labelledby="table-tab">
-                                    <!-- Card -->
-                                    <div class="accordion" id="courseAccordion">
-                                        <div>
-                                            <!-- List group -->
-                                            <!-- Row -->
-                                            <!-- Collapse -->
-                                            <div class="collapse show" id="courseTwo" data-bs-parent="#courseAccordion">
-                                                <div class="pt-3 pb-2">
-
-
-
-                                                    </a>
-                                                    <a href="course-resume.html"
-                                                        class="d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            </li>
-                                            <!-- List group item -->
-
-                                            </a>
-                                            <!-- Row -->
-                                            <!-- Collapse -->
-                                            <div class="collapse" id="courseThree" data-bs-parent="#courseAccordion">
-                                                <div class="pt-3 pb-2">
-                                                    <a href="course-resume.html"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-
-                                                    </a>
-                                                    <a href="course-resume.html"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-                                                        <div class="text-truncate">
-                                                            <span
-                                                                class="icon-shape bg-light text-primary icon-sm rounded-circle me-2"><i
-                                                                    class="mdi mdi-play fs-4"></i></span>
-
-                                                        </div>
-
-                                                        <a href="course-resume.html"
-                                                            class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-                                                            <div class="text-truncate">
-
-
-
-                                                            </div>
-
-                                                        </a>
-                                                        <a href="course-resume.html"
-                                                            class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-                                                        </a>
-                                                        <a href="course-resume.html"
-                                                            class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-
-                                                        </a>
-                                                        <a href="course-resume.html"
-                                                            class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-                                                        </a>
-                                                        <a href="course-resume.html"
-                                                            class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-                                                        </a>
-                                                        <a href="course-resume.html"
-                                                            class="mb-0 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
-
-                                                        </a>
-                                                </div>
-                                            </div>
-                                            </li>
-                                            <!-- List group item -->
-
-                                            <!-- Row -->
-                                            <!-- Collapse -->
-                                            <div class="collapse" id="courseFour" data-bs-parent="#courseAccordion">
-                                                <div class="pt-3 pb-2">
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-0 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            </li>
-
-                                            <!-- Toggle -->
-                                            <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none"
-                                                data-bs-toggle="collapse" href="#courseFive" aria-expanded="false"
-                                                aria-controls="courseFive">
-
-                                            </a>
-                                            <!-- Row -->
-                                            <!-- Collapse -->
-                                            <div class="collapse" id="courseFive" data-bs-parent="#courseAccordion">
-                                                <div class="pt-3 pb-2">
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-                                                        <div class="text-truncate">
-                                                            <span
-                                                                class="icon-shape bg-light text-secondary icon-sm rounded-circle me-2"><i
-                                                                    class="fe fe-lock fs-4"></i></span>
-                                                            <span>Number Precision</span>
-                                                        </div>
-                                                        <div class="text-truncate">
-                                                            <span>1m 22s</span>
-                                                        </div>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                    <a href="#"
-                                                        class="mb-0 d-flex justify-content-between align-items-center text-inherit text-decoration-none disableClick">
-
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            </li>
-                                            <!-- List group item -->
-
-                                            <!-- Toggle -->
-                                            <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none"
-                                                data-bs-toggle="collapse" href="#courseSix" aria-expanded="false"
-                                                aria-controls="courseSix">
-
-                                            </a>
-                                            <!-- Row -->
-                                            <!-- Collapse -->
-
-
-                                            </li>
-                                            <!-- List group item -->
-
-                                            {{section.course.course_outline | safe}}
-
-
-
-
-                                            <!-- List group item -->
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="description" role="tabpanel"
-                                    aria-labelledby="description-tab">
-                                    <!-- Description -->
-                                    <div class="mb-4">
-                                        <h2 class="mb-2">{{section.course.course_name | safe}}</h2>
-                                        <p>
-                                            {{section.course.description | safe}}
-                                        </p>
-
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-12 col-md-6">
-
-                                        </div>
-                                        <div class="col-12 col-md-6">
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <style> 
-                                    .dropdown-toggle:after{
-                                        float:none;
-                                        margin-left:0px;
-                                        vertical-align:0px;
-                                    }
-                                    @media(min-width: 350px){
-                                        tab-pane fade{
-                                        background-color: blue;
-                                        }
-                                        }
-                                </style>
-                               
-
-
-                                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                                    <!-- Reviews -->
-                                    <div class="mb-3">
-                                            <!-- Reviews -->
-                                        <div class="mb-3 mb-lg-0">
-                                            <h3 class="mb-0">Reviews</h3>
-                                        </div>
-
-                                        <!-- Rating -->
-                                        {% for msg in massage %}
-                                            <div class="row mb-3">
-                                                <div class="col-md-12">
-                                                    <input type="hidden" value="{{msg.id}}"id="parent_id">
-                                                            <div class="row mb-2">
-                                                                <div class="col-md-1 col-sm-3">
-                                                                    <img src="../{{msg.course.course_image}}" alt=""
-                                                                        class="rounded-circle avatar-lg" />
-                                                                </div>
-                                                                <div class="col-md-5 col-sm-4">
-                                                                    <div>
-                                                                        <h5 class="mb-1 mt-auto">
-                                                                            {{msg.name}}
-                                                                            <span class="ms-1 fs-6 text-muted">{{msg.pub_date}}</span>
-                                                                        </h5>
-                                                                        <h4> {{msg.comment}}</h4>
-                                                                    </div>
-                                                                     
-                                                                   
-                                                                    <div class="row mt-2" id="like_xyz">
+                        <p>{{x.educational_background}}</p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div
+                  class="tab-pane fade"
+                  id="reviews"
+                  role="tabpanel"
+                  aria-labelledby="review-tab"
+                >
+                  <div id="replyform">
+                    <form method="POST" action="">
+                      {%csrf_token%}
+                      <div>
+                        <input
+                          tpye="text"
+                          class="form-control"
+                          name="comment"
+                          placeholder="Add a comment"
+                          required
+                          id="formcomment"
+                        />
+                      </div>
+                      <div>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-sm mt-2"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <hr />
+                  <!-- Reviews -->
+                  <div class="mb-3">
+                    <!-- Rating -->
+                    {% for review in reviews %}
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <div class="row mb-2">
+                          <div class="col-md-2 col-sm-3 col-lg-2">
+                            <img
+                              src="{{review.course.course_image.url}}"
+                              alt=""
+                              class="rounded-circle avatar-lg"
+                            />
+                          </div>
+                          <div class="col-md-10 col-sm-9 col-lg-10">
+                            <div>
+                              <p class="mb-1 mt-auto">
+                                {{review.user}}
+                                <span class="ms-1 fs-6 text-muted"
+                                  >{{review.pub_date}}</span
+                                >
+                              </p>
+                              <h5>{{review.comment}}</h5>
+                            </div>
+
+                            <!-- <div class="row mt-2" id="like_xyz">
                                                                         
                                                                         <div class="col-md-4">
                                                                             <i class="fa fa-thumbs-up fa-2xl" style="Font-size:22px;"  onclick="likefun({{msg.id}},1)" id="{{msg.id}}_like" name="comment_like" > <spam style=Font-size:16px;>{{msg.likes}}</spam></i>
@@ -386,12 +260,10 @@
                                                                             <i class="fa fa-thumbs-down fa-2xl" style="Font-size:22px;" onclick="likefun({{msg.id }},0)"id="{{msg.id}}_dislike" name="comment_dislike" > <spam style=Font-size:16px;>{{msg.dislikes}}</spam></i>
                                                                         </div>
                                                                     </div>
-                                                                        
-                                                                        
-                                                                       
-                                                                </div>
-                                                                
-                                                                <div class="col-md-3 col-sm-2 mt-3">
+                                                                         -->
+                          </div>
+
+                          <!-- <div class="col-md-3 col-sm-2 mt-3">
                                                                     <a id="myreply" onclick="myfun({{msg.id}})">Reply</a>
                                                                 </div>
 
@@ -402,13 +274,11 @@
                                                                         </a>
                                                                     {%endif%}
                                                                       
-                                                                </div>
-                                                               
-                                                            </div>
-                                                    
-                                                </div>
-                                                
-                                                <div class="col-md-12"style="padding-left:70px; display:none;" id="{{msg.id}}">
+                                                                </div> -->
+                        </div>
+                      </div>
+
+                      <!-- <div class="col-md-12"style="padding-left:70px; display:none;" id="{{msg.id}}">
                                                     
                                                     {%for rpl in msg.replies.all%}
                                                     <div class"row" style="padding-left:40px;">
@@ -433,362 +303,291 @@
                                                        
                                                     </div>
                                                     {%endfor%}
-                                                </div>
-                                            </div>
-
-
-
-                                        {% endfor %}
-                                        <!-- Rating -->
-
-                                        <div id="replyform">
-                                            <!-- Reviews -->
-                                            <div class="mb-3 mb-lg-0 mt-2">
-                                                <h2 class="mb-0">Comment</h2>
-                                            </div>
-                                            <!-- Form -->
-
-                                            <form method="POST" action="">
-                                                {%csrf_token%}
-                                                <input type="hidden" name="review_id" id="abc">
-                                                <div class="form-group mt-3">
-                                                    <label>Name:</label>
-                                        
-                                                    <input tpye="text" name="name" value="">
-                                                </div>
-                                                <div>
-                                                    <label>Comment</label>
-                                                    <input tpye="text" class="form-control" name="comment" required id="formcomment">
-                                                </div>
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary btn-sm mt-2" >Submit</button>
-                                                </div>
-                                                
-                                        
-                                        
-                                            </form>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="tab-pane fade" id="transcript" role="tabpanel"
-                                    aria-labelledby="transcript-tab">
-                                    <!-- Description -->
-                                    <div>
-                                        <h3 class="mb-3">Transcript from the "Introduction" Lesson</h3>
-                                        <div class="mb-4">
-                                            <h4>Course Overview <a href="#" class="text-primary ms-2 h4">[00:00:00]</a>
-                                            </h4>
-                                            <p class="mb-0">
-                                                My name is John Deo and I work as human duct tape at Gatsby, that means
-                                                that I do a lot of different things. Everything from dev roll to writing
-                                                content to writing code. And I used to work as an architect at IBM. I
-                                                live in Portland, Oregon.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Introduction <a href="#" class="text-primary ms-2 h4">[00:00:16]</a>
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Why Take This Course? <a href="#"
-                                                    class="text-primary ms-2 h4">[00:00:37]</a></h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>A Look at the Demo Application <a href="#"
-                                                    class="text-primary ms-2 h4">[00:00:54]</a></h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Summary <a href="#" class="text-primary ms-2 h4">[00:01:31]</a></h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Tab pane -->
-                                <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                                    <!-- FAQ -->
-                                    <div>
-                                        <h3 class="mb-3">Course - Frequently Asked Questions</h3>
-                                        <div class="mb-4">
-                                            <h4>How this course help me to design layout?</h4>
-                                            <p>
-                                                My name is Jason Woo and I work as human duct tape at Gatsby, that means
-                                                that I do a lot of different things. Everything from dev roll to writing
-                                                content to writing code. And I used to work as an architect at IBM. I
-                                                live in Portland, Oregon.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>What is important of this course?</h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Why Take This Course?</h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Is able to create application after this course?</h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL. We're only gonna
-                                                use the pieces of it that we need to build in Gatsby. We're not gonna be
-                                                doing a deep dive into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way
-                                                to write React components in your markdown.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                                </div> -->
                     </div>
+
+                    {% endfor %}
+                  </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-12 mt-lg-n22">
-                    <!-- Card -->
-                    <div class="card mb-3 mb-4">
-                        <div class="p-1">
-                            <div class="d-flex justify-content-center position-relative rounded py-10 border-white border rounded-3 bg-cover"
-                                style="background-image: url(../assets/images/course/course-javascript.jpg);">
-                                <a class="card-img-top"><img src="../{{section.course.course_image}}" alt=""
-                                        class="rounded-top-md card-img-top" width="200" height="200"></a>
-                            </div>
-                        </div>
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <!-- Price single page -->
-                            <div class="mb-3">
-                                <span class="text-dark fw-bold h2">{{section.course.price}}</span>
-                                {% comment %} <del class="fs-4 text-muted">$750</del> {% endcomment %}
-                            </div>
-                            <div class="d-grid">
-                                <a href="/applyform/{{section.id}}" class="btn btn-primary mb-2  ">Apply</a>
 
+                <!-- Tab pane -->
+                <div
+                  class="tab-pane fade"
+                  id="faqs"
+                  role="tabpanel"
+                  aria-labelledby="faq-tab"
+                >
+                  <!-- FAQ -->
+                  <div class="accordion" id="courseAccordion">
+                    <div>
+                      <!-- List group -->
+                      <ul class="list-group list-group-flush">
+                        {% for o in faqs %}
+                        <li class="list-group-item px-0 pt-0">
+                          <!-- Toggle -->
+                          <a
+                            class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none active collapsed"
+                            data-bs-toggle="collapse"
+                            href="#courseTwo"
+                            aria-expanded="false"
+                            aria-controls="courseTwo"
+                          >
+                            <div class="me-auto">
+                              {{o.question}}
                             </div>
-                        </div>
+                            <!-- Chevron -->
+                            <span class="chevron-arrow ms-4">
+                              <i class="fe fe-chevron-down fs-4"></i>
+                            </span>
+                          </a>
+                          <!-- Row -->
+                          <!-- Collapse -->
+                          <div
+                            class="collapse"
+                            id="courseTwo"
+                            data-bs-parent="#courseAccordion"
+                            style=""
+                          >
+                            <div class="pt-3 pb-2">
+                              <a
+                                href="course-resume.html"
+                                class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none"
+                              >
+                                <div class="text-truncate">
+                                  <span
+                                    class="icon-shape bg-light text-primary icon-sm rounded-circle me-2"
+                                    ><i class="mdi mdi-play fs-4"></i
+                                  ></span>
+                                  <span>{{o.answer}}</span>
+                                </div>
+                                
+                              </a>
+                              
+                            </div>
+                          </div>
+                        </li>
+                        {% endfor %}
+                      </ul>
                     </div>
-                    <!-- Card -->
-                    <div class="card mb-4">
-                        <div>
-                            <!-- Card header -->
-                            <div class="card-header">
-                                <h4 class="mb-0">What’s included</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-transparent"><i
-                                        class="fe fe-play-circle align-middle me-2 text-primary"></i>12 hours video</li>
-                                <li class="list-group-item bg-transparent"><i
-                                        class="fe fe-award me-2 align-middle text-success"></i>Certificate</li>
-                                <li class="list-group-item bg-transparent"><i
-                                        class="fe fe-calendar align-middle me-2 text-info"></i>12 Article
-                                </li>
-                                <li class="list-group-item bg-transparent"><i
-                                        class="fe fe-video align-middle me-2 text-secondary"></i>Watch Offline</li>
-                                <li class="list-group-item bg-transparent border-bottom-0"><i
-                                        class="fe fe-clock align-middle me-2 text-warning"></i>Lifetime access</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Card -->
-                    <div class="card">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="position-relative">
-                                    <img src="{% static 'assets/images/avatar/avatar-6.jpg'%}" alt=""
-                                        class="rounded-circle avatar-xl" />
-                                    <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
-                                        data-placement="top" title="Verifed">
-                                        <img src="{% static 'assets/images/svg/checked-mark.svg' %}" alt="" height="30"
-                                            width="30" />
-                                    </a>
-                                </div>
-                                <div class="ms-4">
-                                    <h4 class="mb-0">Jenny Wilson</h4>
-                                    <p class="mb-1 fs-6">Front-end Developer, Designer</p>
-                                    <span class="fs-6"><span class="text-warning">4.5</span><span
-                                            class="mdi mdi-star text-warning me-2"></span>Instructor Rating</span>
-                                </div>
-                            </div>
-                            <div class="border-top row mt-3 border-bottom mb-3 g-0">
-                                <div class="col">
-                                    <div class="pe-1 ps-2 py-3">
-                                        <h5 class="mb-0">11,604</h5>
-                                        <span>Students</span>
-                                    </div>
-                                </div>
-                                <div class="col border-start">
-                                    <div class="pe-1 ps-3 py-3">
-                                        <h5 class="mb-0">32</h5>
-                                        <span>Courses</span>
-                                    </div>
-                                </div>
-                                <div class="col border-start">
-                                    <div class="pe-1 ps-3 py-3">
-                                        <h5 class="mb-0">12,230</h5>
-                                        <span>Reviews</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>I am an Innovation designer focussing on UX/UI based in Berlin. As a creative resident at
-                                Figma explored the city of the future and how new technologies.</p>
-                            <a href="instructor-profile.html" class="btn btn-outline-white btn-sm">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Card -->
-
-            <div class="pt-12 pb-3">
-
-                <div class="row d-md-flex align-items-center mb-4">
-                    <div class="col-12">
-                        <h2 class="mb-0">Related Courses</h2>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Card -->
-                        <div class="card mb-4 card-hover">
-                            <a class="card-img-top"><img src="../{{section.course.course_image}}" alt=""
-                                    class="card-img-top rounded-top-md" /></a>
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2"><a class="text-inherit">How to
-                                        easily create a website with {{section.course.course_name}}</a></h4>
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i class="far fa-clock me-1"></i>3h 56m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(7,700)</span>
-                                </div>
-                            </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="../{{section.course.course_image}}" class="rounded-circle avatar-xs"
-                                            alt="" />
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Morris Mccoy</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-<script>
-        function likefun(id, value){
-            var obj = {
-                id:id,
-                value:value
-            };
-            
-            $.ajax({
-                type:"POST",
-                url: "{% url 'like' %}",
-                dataType:"json",
-                data:obj,
-                success: function (data) {
-          
-                    showfun(data,id)
                     
-                    $("#like_xyz").load(" #like_xyz")
-                    $("#reply_xyz").load(" #reply_xyz")	
-                   
-                } 
-                
-            })   
-        }
-</script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-12 mt-lg-n22">
+          <!-- Card -->
+          <div class="card mb-3 mb-4">
+            <div class="p-1">
+              <a class="card-img-top"
+                ><img
+                  src="{{course.course_image.url}}"
+                  alt=""
+                  class="rounded-top-md card-img-top"
+                  width="200"
+                  height="200"
+              /></a>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <!-- Price single page -->
+              <div class="mb-3">
+                <span class="text-dark fw-bold h2">{{course.price}}</span>
+                <hr />
+                Enrollment Starts from:
+                <span class="text-dark fw-bold h6">
+                  {{ latestSection.enrollment_start_date }}</span
+                >
+                to
+                <span class="text-dark fw-bold h6"
+                  >{{ latestSection.enrollment_end_date }}</span
+                >
+                <br />
 
+                Classes Starts from:
+                <span class="text-dark fw-bold h6"
+                  >{{ latestSection.section_start_date }}</span
+                >
+                to
+                <span class="text-dark fw-bold h6"
+                  >{{ latestSection.section_end_date }}</span
+                >
+              </div>
+              <hr />
+              <div class="d-grid">
+                <a
+                  href="{% url 'course-apply' sid=latestSection.id %}"
+                  class="btn btn-primary mb-2"
+                  >Apply Now</a
+                >
+              </div>
+            </div>
+          </div>
 
+          <div class="card mb-4">
+            <div>
+              <!-- Card header -->
+              <div class="card-header">
+                <h4 class="mb-0">What’s included</h4>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent">
+                  <i
+                    class="fe fe-play-circle align-middle me-2 text-primary"
+                  ></i
+                  >1.5 hours Lecture
+                </li>
+                <li class="list-group-item bg-transparent">
+                  <i class="fe fe-award me-2 align-middle text-success"></i
+                  >Certificate
+                </li>
+                <li class="list-group-item bg-transparent">
+                  <i class="fe fe-calendar align-middle me-2 text-info"></i
+                  >Weekly Assignments
+                </li>
+                <li class="list-group-item bg-transparent">
+                  <i class="fe fe-video align-middle me-2 text-secondary"></i
+                  >Best Practices
+                </li>
+                <li class="list-group-item bg-transparent border-bottom-0">
+                  <i class="fe fe-clock align-middle me-2 text-warning"></i
+                  >Final Project
+                </li>
+              </ul>
+            </div>
+          </div>
 
+          <!-- Card -->
+        </div>
+      </div>
+      <!-- Card -->
+
+      <div class="pt-12 pb-3">
+        <div class="row d-md-flex align-items-center mb-4">
+          <div class="col-12">
+            <h2 class="mb-0">Related Courses</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-12">
+            <!-- Card -->
+            <div class="card mb-4 card-hover">
+              <a class="card-img-top"
+                ><img
+                  src="../{{course.course_image}}"
+                  alt=""
+                  class="card-img-top rounded-top-md"
+              /></a>
+              <!-- Card body -->
+              <div class="card-body">
+                <h4 class="mb-2 text-truncate-line-2">
+                  <a class="text-inherit"
+                    >How to easily create a website with
+                    {{course.course_name}}</a
+                  >
+                </h4>
+                <ul class="mb-3 list-inline">
+                  <li class="list-inline-item">
+                    <i class="far fa-clock me-1"></i>3h 56m
+                  </li>
+                  <li class="list-inline-item">
+                    <svg
+                      class="me-1 mt-n1"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="3"
+                        y="8"
+                        width="2"
+                        height="6"
+                        rx="1"
+                        fill="#754FFE"
+                      />
+                      <rect
+                        x="7"
+                        y="5"
+                        width="2"
+                        height="9"
+                        rx="1"
+                        fill="#DBD8E9"
+                      />
+                      <rect
+                        x="11"
+                        y="2"
+                        width="2"
+                        height="12"
+                        rx="1"
+                        fill="#DBD8E9"
+                      />
+                    </svg>
+                    Beginner
+                  </li>
+                </ul>
+                <div class="lh-1">
+                  <span>
+                    <i class="mdi mdi-star text-warning me-n1"></i>
+                    <i class="mdi mdi-star text-warning me-n1"></i>
+                    <i class="mdi mdi-star text-warning me-n1"></i>
+                    <i class="mdi mdi-star text-warning me-n1"></i>
+                    <i class="mdi mdi-star text-warning"></i>
+                  </span>
+                  <span class="text-warning">4.5</span>
+                  <span class="fs-6 text-muted">(7,700)</span>
+                </div>
+              </div>
+              <!-- Card footer -->
+              <div class="card-footer">
+                <div class="row align-items-center g-0">
+                  <div class="col-auto">
+                    <img
+                      src="../{{course.course_image}}"
+                      class="rounded-circle avatar-xs"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col ms-2">
+                    <span>Morris Mccoy</span>
+                  </div>
+                  <div class="col-auto">
+                    <a href="#" class="text-muted bookmark">
+                      <i class="fe fe-bookmark"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
-</html>
+<!-- <script>
+  function likefun(id, value) {
+    var obj = {
+      id: id,
+      value: value,
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'like' %}",
+      dataType: "json",
+      data: obj,
+      success: function (data) {
+        showfun(data, id);
+
+        $("#like_xyz").load(" #like_xyz");
+        $("#reply_xyz").load(" #reply_xyz");
+      },
+    });
+  }
+</script> -->
 
 {%endblock body%}

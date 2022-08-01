@@ -1,149 +1,136 @@
-import email
-from re import L
-from sqlite3 import Date
 from django.http import *
-from django.shortcuts import render,redirect,HttpResponse
-from django.views.generic.edit import CreateView
+from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic.list import ListView
 from .form import Userform
 import datetime
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
+from .forms import SignUpForm
+from django.contrib.auth import login,authenticate
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 # from .forms import  Userform
-
 
 
 def about(request):
     return render(request, 'about.html')
 
 
-
 def index(request):
-    
-    sections= Section.objects.all()
+
+    sections = Section.objects.filter(~Q(section_status = 'CLOSED'))
     today_date = datetime.date.today()
+    services = Service.objects.all()
 
-    data ={
-        'sections':sections,
-        'today_date': today_date
-        }
+    data = {
+        'sections': sections,
+        'today_date': today_date,
+        'services': services,
+    }
 
-    return render(request,'index.html',data)
+    return render(request, 'index.html', data)
 
-def description(request,aid):
-    course=Section.objects.get(id=aid).course_id
-    if request.method =="POST":
-        comment=request.POST.get('comment')
-        name=request.POST.get('name')
-        reply_id=request.POST.get('review_id')
-        if name == "":
-            name = "Anonymous"
-        
-        a=Review(comment=comment,name=name,course_id=course,parent_id=reply_id)
-        a.save()
 
-        
-    massage= Review.objects.filter(course_id=course, parent=None)
-    
-    section = Section.objects.get(id=aid)
-    data ={
-        'section':section,
-        'massage':massage,
-        
-        }
+def description(request, slug):
+    course = Course.objects.get(slug=slug)
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            comment = request.POST.get('comment')
+            a = Review(comment=comment, user=request.user,
+                   course=course)
+            a.save()
+        else:
+            request.session["course"] = slug
+            messages.info(request, "Please login to comment")
+            return redirect("login")
 
-    return render(request,'description.html', data)
+    data = {
+        'course': course,
+        'latestSection': course.sections.last(),
+        'reviews': course.reviews.all(),
+        'instructors': course.instructors.all(),
+        'faqs': course.FAQ.all(),
+    }
+
+    return render(request, 'description.html', data)
+
+@login_required
+def loginSuccess(request):
+    if  'section' in request.session and request.session['section'] is not None:
+        section_id = request.session['section']
+        request.session['section'] = None
+        return redirect("course-apply", sid=section_id)
+    elif 'course' in request.session and request.session["course"] is not None:
+        course_slug = request.session["course"] 
+        request.session["course"]  = None
+        return redirect("description", slug= course_slug)
+    else:
+        return redirect("/")
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user=form.save()
+            login(request, user)
+            messages.success(request, 'Registered Successfully !')
+            if request.session["section"] is not None:
+                section_id = request.session['section']
+                request.session['section'] = None
+                return redirect("course-apply", sid=section_id)
+            else:
+                redirect("/")
+    else:
+        form = SignUpForm()
+
+    return render(request, 'signup.html', {'form': form})
+
+
+def apply(request, sid):
+    section = Section.objects.get(id = sid)
+    if request.method == "POST": 
+            if section.enrollment_end_date < datetime.date.today():
+                 messages.error(request, "We cant Proceed with your request as Enrollment has been Ended")
+            elif Enrollment.objects.filter(user = request.user , section = section).exists():
+                messages.error(request, "You already Applied for this course")
+            else:
+                en = Enrollment.objects.create(user=request.user, section_id=sid, status='inactive')
+                en.save()
+                messages.success(request, "Your Request for Enrollment successfully submitted")
+            return redirect('/')
+    else:
+        if request.user.is_authenticated is False:
+            request.session["section"] = sid
+            return redirect('login')
+
+    return render(request, 'applyform.html', {"course_title": section.course.course_name})
+
 
 @csrf_exempt
 def like(request):
- 
-    if request.method=="POST":
-        id=request.POST.get('id')
-        response=request.POST.get('value')
 
-        r=Review.objects.get(id=id)
+    if request.method == "POST":
+        id = request.POST.get('id')
+        response = request.POST.get('value')
+
+        r = Review.objects.get(id=id)
 
         if response == "1":
-            r.likes= r.likes+1            
+            r.likes = r.likes+1
         else:
-            r.dislikes = r.dislikes+1        
+            r.dislikes = r.dislikes+1
         r.save()
-        data=response
-       
-        
+        data = response
+
     return HttpResponse(data)
     # return JsonResponse(data)
 
- 
-
-def applyform(request,aid):
-
-        img = Section.objects.get(id=aid)
-
-        if request.method =="POST":
-            formdata =Userform(request.POST)
-            if formdata.is_valid():
-        
-                fname= formdata.cleaned_data['first_name']
-                lname= formdata.cleaned_data['last_name']
-                email= formdata.cleaned_data['email']
-                cnic= formdata.cleaned_data['cnic']
-                contact= formdata.cleaned_data['contact']
-                educational_background= formdata.cleaned_data['educational_background']
-            
-                myuser= User(first_name=fname,last_name=lname,email=email,cnic=cnic,contact=contact,educational_background=educational_background)
-                user=formdata.save()
-
-                en= Enrollment.objects.create(user=user,section_id=aid,apply_date=datetime.datetime.now(),activation_Date=datetime.datetime.now(),activate='True')
-                en.save()
-                return redirect('/')
-        else:
-            formdata=Userform()
-
-           
-           
-
-        return render(request,'applyform.html',{'form':formdata })
-
-    # if request.method == 'POST':
-
-    #     first_name=request.POST['first_name']
-    #     last_name=request.POST['last_name']
-    #     email=request.POST['email']
-    #     cnic=request.POST['cnic']
-    #     contact=request.POST['contact']
-    #     educational_background=request.POST['educational_background']
-        
-
-    #     myuser = User.objects.create(first_name=first_name,last_name=last_name,email=email,cnic=cnic,contact=contact,educational_background=educational_background)
-    #     User.save(myuser)
-
-    #     return redirect('/')
-  
-    # return render(request, 'applyform.html')
-
-
 
 class StudentList(ListView):
- 
+
     # specify the model for list view
     model = Section
-    template_name = "course_list.html" 
-
-
-
-
-# class StudentCreate(CreateView):
-  
-#     # specify the model for create view
-#     model = User
-  
-#     # specify the fields to be displayed
-  
-#     fields = ['name', 'email','password']
-#     template_name = "create.html"
-#     # success_url = reverse_lazy("home")
-
-  
+    template_name = "course_list.html"
