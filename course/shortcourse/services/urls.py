@@ -12,6 +12,8 @@ urlpatterns = [
     path('like', views.like, name='like'),
     path('course/apply/<sid>', views.apply, name="course-apply"),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("accounts/signup", views.signup, name="signup")
+    path("accounts/signup", views.signup, name="signup"),
+    path('enrollment-detail', views.show_enrollment_detail, name='enrollment-detail'),
+    path('update-profile', views.update_profile, name='update-profile')
 
 ]

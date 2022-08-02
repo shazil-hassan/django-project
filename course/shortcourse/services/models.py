@@ -128,7 +128,8 @@ class Enrollment(models.Model):
     section= models.ForeignKey(Section,on_delete=models.CASCADE)
     apply_date= models.DateField(default=date.today())
     activation_date = models.DateField(blank=True, null=True)
-    status = models.CharField(max_length=50,choices=choicestatus)    
+    status = models.CharField(max_length=50,choices=choicestatus)
+    comment=models.CharField(max_length=200,null=True)    
 
     def __str__(self):
         return f"{self.user},{self.section}"

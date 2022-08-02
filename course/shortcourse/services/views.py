@@ -5,7 +5,7 @@ from .form import Userform
 import datetime
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
-from .forms import SignUpForm
+from .forms import SignUpForm,update_profile_form
 from django.contrib.auth import login,authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -128,6 +128,33 @@ def like(request):
     return HttpResponse(data)
     # return JsonResponse(data)
 
+
+def show_enrollment_detail(request):
+
+    obj = Enrollment.objects.filter(user=request.user)
+    
+    return render(request,'show_enrollments.html',{'data':obj})
+
+def update_profile(request):
+    if request.user.is_authenticated:
+        data = User.objects.get(id=request.user.id)
+        
+        if request.method == "POST":
+            form = update_profile_form(request.POST, instance = request.user)
+
+            first_name = request.POST["first_name"]
+            last_name = request.POST["last_name"]
+            email = request.POST["email"]
+            educational_background = request.POST["educational_background"]
+            
+            if form.is_valid():
+                User.objects.filter(id=request.user.id).update(first_name=first_name,last_name=last_name,email=email,educational_background=educational_background)
+                form.save()
+                return redirect('update-profile')
+
+        form = update_profile_form(instance = request.user)
+    return render(request,'update_profile.html', {'data': data,'form':form}) 
+    
 
 class StudentList(ListView):
 

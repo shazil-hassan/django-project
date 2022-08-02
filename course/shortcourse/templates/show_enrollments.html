@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%block body%}
+<div class="pt-5 pb-5">
+    <div class="container">
+        <!-- User info -->
+        <div class="row align-items-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                <!-- Bg -->
+                <div class="pt-16 rounded-top-md" style="
+                            background: url({% static 'assets/images/background/profile-bg.jpg'%}) no-repeat;
+                            background-size: cover;
+                        "></div>
+                <div
+                    class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                            <img src="{% static 'assets/images/avatar.png'%}" class="avatar-xl rounded-circle border border-4 border-white"
+                                alt="" />
+                        </div>
+                        {%if user.is_authenticated%}
+                        <div class="lh-1">
+                            <h2 class="mb-0">
+                                
+                                    {{request.user.first_name}} {{request.user.last_name}}
+                                
+                              
+                            </h2>
+                            <p class="mb-0 d-block">{{request.user.email}}</p>
+                        </div>
+                        {%endif%}
+                    </div>
+                    <div>
+                        <a href="{% url 'index' %}" class="btn btn-outline-primary btn-sm d-none d-md-block">Go to
+                            Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-0 mt-md-4">
+            <div class="col-lg-3 col-md-4 col-12">
+                <!-- Side navbar -->
+                
+                    
+            </div>
+            <div class="container">
+                <div class="col-lg-9 col-md-8 col-12">
+                    <!-- Card -->
+                    <div class="card border-0">
+                        <!-- Card header -->
+                        <div class="card-header d-lg-flex justify-content-between align-items-center">
+                            <div class="mb-3 mb-lg-0">
+                                <h3 class="mb-0">My Enrollments</h3>
+                                <p class="mb-0">
+                                    Here is list of enrollment that you have subscribed.
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <!-- Card body -->
+                        {% for object in data %}
+                        <div class="card-body">
+                            <div class="border-bottom pt-0 pb-5">
+                                <div class="row mb-4">
+                                    <div class="col-lg-6 col-md-8 col-7 mb-2 mb-lg-0">
+                                        <span class="d-block">
+                                            <span class="h4">{{object.section.section_title}}</span>
+                                            <span class="badge bg-success ms-2">
+                                                {{object.status}}</span></span>
+                                        <p class="mb-0 fs-6">
+                                            {{object.section.course.course_name}}
+                                        </p>
+                                    </div>
+                               
+                                    <div class="col-lg-3 col-md-12 col-12 d-lg-flex align-items-start justify-content-end">
+                                        <a href="#" class="btn btn-outline-primary btn-sm">Change Plan</a>
+                                    </div>
+                                </div>
+                                <!-- Pricing data -->
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                        <span class="fs-6">Start Date</span>
+                                        <h6 class="mb-0">{{object.section.section_start_date}}</h6>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                        <span class="fs-6">Price</span>
+                                        <h6 class="mb-0">{{object.section.course.price}}</h6>
+                                    </div>
+                                  
+                                    <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                        <span class="fs-6">Comment</span>
+                                        <h6 class="mb-0">{{object.comment}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+ 
+
+{%endblock body%}

@@ -439,11 +439,22 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="#"
+                href="{% url 'update-profile'%}"
+                
                 id="navbarBrowse"
                 data-bs-display="static"
               >
                 Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="{% url 'enrollment-detail' %}"
+                id="navbarBrowse"
+                data-bs-display="static"
+              >
+              Enrollment
               </a>
             </li>
             {% else %}
@@ -550,7 +561,7 @@
     <!-- Footer -->
     <!-- Footer -->
     
-    {%block body%} {%endblock body%}
+    
     
 
     <!-- Scripts -->
@@ -592,6 +603,15 @@
 
     <!-- Theme JS -->
     <script src="{% static 'assets/js/theme.min.js' %}"></script>
+    {% if not message == "" %}
+    <script>
+      function hidemessage() {
+        $("#view_message").hide();
+      }
+      setTimeout(hidemessage, 4000);
+    </script>
+    {% endif%}
+
     <!-- <script>
       function myfun(id) {
         document.getElementById("replyform");
@@ -621,5 +641,6 @@
         }
       }
     </script> -->
+  {%block body%} {%endblock body%}  
   </body>
 </html>
