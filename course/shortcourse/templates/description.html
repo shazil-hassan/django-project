@@ -1,8 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block body %}
 
 <head>
-  <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}" />
-  <title>Course Details</title>
 
   <style>
     .dropdown-toggle:after {
@@ -35,7 +33,7 @@
               </a>
 
               <span class="text-white ms-3"
-                ><i class="fe fe-user text-white-50"></i> 89 Enrolled
+                ><i class="fe fe-user text-white-50"></i> {{course.total_enrollments}} Enrolled
               </span>
               <span class="ms-4">
                 <i class="mdi mdi-star me-n1 text-warning"></i>
@@ -169,7 +167,7 @@
                   aria-labelledby="instructor-tab"
                 >
                   <div class="mb-4">
-                    {% for x in instructors %}
+                    {% for x in course.instructors.all %}
                     <div class="d-flex border-bottom pb-4 mb-4">
                       <img
                         src="{% static 'assets/images/avatar.png' %}"
@@ -178,8 +176,8 @@
                       />
                       <div class="ms-3">
                         <h4 class="mb-1">
-                          {{x.first_name}}
-                          <span class="ms-1 fs-6 text-muted">2 Days ago</span>
+                          {{x.first_name}} {{x.last_name}}
+                          <!-- <span class="ms-1 fs-6 text-muted">2 Days ago</span> -->
                         </h4>
                         <div class="fs-6 mb-2">
                           <i class="mdi mdi-star me-n1 text-warning"></i>
@@ -188,7 +186,7 @@
                           <i class="mdi mdi-star me-n1 text-warning"></i>
                           <i class="mdi mdi-star me-n1 text-warning"></i>
                         </div>
-                        <p>{{x.educational_background}}</p>
+                        <p>{{x.educational_background | linebreaks}}</p>
                       </div>
                     </div>
                     {% endfor %}
@@ -228,7 +226,7 @@
                   <!-- Reviews -->
                   <div class="mb-3">
                     <!-- Rating -->
-                    {% for review in reviews %}
+                    {% for review in course.reviews.all %}
                     <div class="row mb-3">
                       <div class="col-md-12">
                         <div class="row mb-2">
@@ -322,7 +320,7 @@
                     <div>
                       <!-- List group -->
                       <ul class="list-group list-group-flush">
-                        {% for o in faqs %}
+                        {% for o in course.Faqs.all %}
                         <li class="list-group-item px-0 pt-0">
                           <!-- Toggle -->
                           <a
@@ -349,10 +347,7 @@
                             style=""
                           >
                             <div class="pt-3 pb-2">
-                              <a
-                                href="course-resume.html"
-                                class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none"
-                              >
+                             
                                 <div class="text-truncate">
                                   <span
                                     class="icon-shape bg-light text-primary icon-sm rounded-circle me-2"
@@ -361,7 +356,7 @@
                                   <span>{{o.answer}}</span>
                                 </div>
                                 
-                              </a>
+                             
                               
                             </div>
                           </div>
@@ -397,27 +392,27 @@
                 <hr />
                 Enrollment Starts from:
                 <span class="text-dark fw-bold h6">
-                  {{ latestSection.enrollment_start_date }}</span
+                  {{ course.sections.last.enrollment_start_date }}</span
                 >
                 to
                 <span class="text-dark fw-bold h6"
-                  >{{ latestSection.enrollment_end_date }}</span
+                  >{{ course.sections.last.enrollment_end_date }}</span
                 >
                 <br />
 
                 Classes Starts from:
                 <span class="text-dark fw-bold h6"
-                  >{{ latestSection.section_start_date }}</span
+                  >{{ course.sections.last.section_start_date }}</span
                 >
                 to
                 <span class="text-dark fw-bold h6"
-                  >{{ latestSection.section_end_date }}</span
+                  >{{ course.sections.last.section_end_date }}</span
                 >
               </div>
               <hr />
               <div class="d-grid">
                 <a
-                  href="{% url 'course-apply' sid=latestSection.id %}"
+                  href="{% url 'course-apply' sid=course.sections.last.slug %}"
                   class="btn btn-primary mb-2"
                   >Apply Now</a
                 >

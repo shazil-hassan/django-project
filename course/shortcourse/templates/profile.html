@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block body%}
+
+
+<div class="pt-5 pb-5">
+    <div class="container">
+            <!-- User info -->
+        <div class="row align-items-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                <!-- Bg -->
+                <div class="pt-16 rounded-top-md" style="
+                            background: url({%static 'assets/images/background/profile-bg.jpg'%}) no-repeat;
+                            background-size: cover;
+                        "></div>
+                <div
+                    class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                            <img src="{{request.user.image.url}}" class="avatar-xl rounded-circle border border-4 border-white"
+                                alt="" />
+                        </div>
+                        {%if user.is_authenticated%}
+                        <div class="lh-1">
+                            <h2 class="mb-0">
+                                
+                                    {{request.user.first_name}} {{request.user.last_name}}
+                                
+                              
+                            </h2>
+                            <p class="mb-0 d-block">{{request.user.email}}</p>
+                        </div>
+                        {%endif%}
+                    </div>
+                    <div>
+                        <a href="{% url 'index' %}" class="btn btn-outline-primary btn-sm d-none d-md-block">Go to
+                            Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Content -->
+<div class="row mt-md-4 mt-3">
+    {% include "messages.html" %}
+            <div class="col-12">
+                <!-- Card -->
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0">Profile Details</h3>
+                        <p class="mb-0">
+                            Here is your Profile Details
+                        </p>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                     
+                            
+                            <!-- Form -->
+                            <form class="row" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                
+                                    <!-- Button -->
+                                    <button class="btn btn-primary" type="submit">
+                                        Update Profile
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("id_email").classList.add("form-control");
+    document.getElementById("id_first_name").classList.add("form-control");
+    document.getElementById("id_last_name").classList.add("form-control");
+    document.getElementById("id_cnic").classList.add("form-control");
+    document.getElementById("id_contact").classList.add("form-control");
+    document.getElementById("id_educational_background").classList.add("form-control");
+  </script>
+<!-- Footer -->
+<!-- Footer -->
+
+
+ {%endblock body%}

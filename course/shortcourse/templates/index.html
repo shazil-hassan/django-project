@@ -1,27 +1,28 @@
 {% extends 'base.html' %} {% load static %} {%block body%}
 {% include "messages.html" %}
-<div class="bg-primary">
+<div class="bg-dark">
   <div class="container">
     <!-- Hero Section -->
     <div class="row align-items-center g-0">
       <div class="col-xl-5 col-lg-6 col-md-12">
         <div class="py-5 py-lg-0">
-          <h1 class="text-white display-4 fw-bold py-5">Welcome to Saturn</h1>
+          <h1 class="text-white display-4 fw-bold py-5">Welcome to HiveSol Technologies</h1>
           <p class="text-white-50 mb-4 lead">
             Hand-picked Instructor and expertly crafted courses, designed for
             the modern students and entrepreneur.
           </p>
-          <a href="list" class="btn btn-success">Browse Courses</a>
-          <a href="pages/sign-in.html" class="btn btn-white"
-            >Are You Instructor?</a
+          <a href="#latest-sections" class="btn btn-success">Browse Courses</a>
+          <a href="#services" class="btn btn-white"
+            >Browse Services</a
           >
         </div>
         <br />
       </div>
       <div class="col-xl-7 col-lg-6 col-md-12 text-lg-end text-center">
         <img
-          src="{% static 'assets/images/avatar/avatar-5.jpg'%}"
+          src="{% static 'assets/images/Information-Technology-PNG-Pic.png' %}"
           alt=""
+          style="max-height: 400px;"
           class="img-fluid"
         />
       </div>
@@ -41,7 +42,7 @@
             <i class="fe fe-video"> </i
           ></span>
           <div class="ms-3">
-            <h4 class="mb-0 fw-semi-bold">30,000 online courses</h4>
+            <h4 class="mb-0 fw-semi-bold">30 online courses</h4>
             <p class="mb-0">Enjoy a variety of fresh topics</p>
           </div>
         </div>
@@ -91,24 +92,25 @@
             src="{{obj.course.course_image.url}}"
             alt=""
             class="card-img-top rounded-top-md"
+            style="height: 250px"
         /></a>
         <!-- Card Body -->
         <div class="card-body">
           <h4 class="mb-2 text-truncate-line-2">
             <a href="course/{{obj.course.slug}}" class="text-inherit"
-              >{{obj.course.course_name}}</a>
+              >{{obj.course.course_name}}</a
+            >
           </h4>
           <!-- List -->
           <ul class="mb-3 list-inline">
-            <li class="list-inline-item">Section: <b>{{obj.section_title}}</b></li>
-            <li class="font-weight-bold"> Fee: <b>{{ obj.course.price }}</b></li>
-            <li class="list-inline-item mb-2">
-             
-            
-              <i class="far fa-clock me-1"></i> {% if obj.section_status == "UPCOMING" %} Enrollment Starts on {{ obj.enrollment_start_date }} {% else %} Enrollment ends on {{ obj.enrollment_end_date }} {% endif %}
+            <li class="list-inline-item">
+              Section: <b>{{obj.section_title}}</b>
             </li>
-
-            
+            <li class="font-weight-bold">Fee: <b>{{ obj.course.price }}</b></li>
+            <li class="list-inline-item mb-2">
+              <i class="far fa-clock me-1"></i> {% if obj.section_status == "UPCOMING" %} Enrollment Starts on {{ obj.enrollment_start_date }}
+              {% else %} Enrollment ends on {{ obj.enrollment_end_date }} {%endif %}
+            </li>
 
             <li class="list-inline-item">
               <svg
@@ -148,75 +150,51 @@
             </li>
           </ul>
           <div class="lh-1">
-            <span>
-              <i class="mdi mdi-star text-warning me-n1"></i>
-              <i class="mdi mdi-star text-warning me-n1"></i>
-              <i class="mdi mdi-star text-warning me-n1"></i>
-              <i class="mdi mdi-star text-warning me-n1"></i>
-              <i class="mdi mdi-star text-warning"></i>
-            </span>
-            <span class="text-warning">4.9</span>
-            <span class="fs-6 text-muted">(10)</span>
-            <span class="badge bg-success ms-2">
-              {{obj.section_status}}</span>
+            <span class="badge bg-success ms-2"> {{obj.section_status}}</span>
           </div>
         </div>
-       
-        
       </div>
     </div>
-    {% endfor %} 
+    {% endfor %}
   </section>
 
-
-
-  
-
- 
   <section class="row" id="services">
     <h2 class="mb-4">Our Services</h2>
-
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
       <!-- Card -->
       <div class="card mb-4 shadow-lg">
         <div class="row g-0">
           <!-- Image -->
-          <a href="/" class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded" style="background-image: url({% static 'assets/images/blog/blogpost-2.jpg' %});">
-            <img src="{% static 'assets/images/blog/blogpost-2.jpg' %}" class="img-fluid d-lg-none invisible" alt=""></a>
+          <a
+            href="/"
+            class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded"
+            style="background-image: url({%static 'assets/images/blog/blogpost-2.jpg' %});"
+          >
+            <img
+              src="{% static 'assets/images/blog/blogpost-2.jpg' %}"
+              class="img-fluid d-lg-none invisible"
+              alt=""
+          /></a>
           <div class="col-lg-4 col-md-12 col-12">
             <!-- Card body -->
             <div class="card-body">
               <a href="#" class="fs-5 mb-3 fw-semi-bold d-block">Courses</a>
-              <h1 class="mb-2 mb-lg-4"> <a href="blog-single.html" class="text-inherit">
+              <h1 class="mb-2 mb-lg-4">
+                <a href="blog-single.html" class="text-inherit">
                   Getting started the Web App JavaScript in 2020
                 </a>
               </h1>
-              <p>Our features, journey, tips and us being us. Lorem ipsum dolor sit amet,
-                accumsan
-                in, tempor dictum neque.</p>
+              <p>
+                Our features, journey, tips and us being us. Lorem ipsum dolor
+                sit amet, accumsan in, tempor dictum neque.
+              </p>
               <!-- Media content -->
-              <div class="row align-items-center g-0 mt-lg-7 mt-4">
-                <div class="col-auto">
-                    <!-- Img  -->
-                  <img src="../assets/images/avatar/avatar-6.jpg" alt="" class="rounded-circle avatar-sm me-2">
-                </div>
-                <div class="col lh-1 ">
-                  <h5 class="mb-1">Dustin Warren</h5>
-                  <p class="fs-6 mb-0">September 13, 2020</p>
-                </div>
-                <div class="col-auto">
-  
-                  <p class="fs-6 mb-0">6 Min Read</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-  
 
     {% for x in services %}
 
@@ -224,22 +202,76 @@
       <!-- Card -->
       <div class="card mb-4 shadow-lg">
         <a href="/" class="card-img-top">
-            <!-- Img  -->
-          <img src="{{x.image.url}}" class="card-img-top rounded-top-md" alt=""></a>
+          <!-- Img  -->
+          <img src="{{x.image.url}}" class="card-img-top rounded-top-md" alt=""
+        /></a>
         <!-- Card body -->
         <div class="card-body">
-          <a href="#" class="fs-5 mb-2 fw-semi-bold d-block text-success">IT</a>
-          <h3><a href="/" class="text-inherit">
-              {{x.title}}
-            </a>
-          </h3>
+          <span class="fs-5 mb-2 fw-semi-bold d-block text-success"
+            >{{x.category}}</span
+          >
+          <h3><span class="text-inherit"> {{x.title}} </span></h3>
           <p>{{x.description}}</p>
-        
         </div>
       </div>
     </div>
-    {% endfor %} 
+    {% endfor %}
   </section>
 
+
+  {% if projects %}
+  <div class="py-8 py-lg-16 bg-light-gradient-top">
+    <div class="container">
+      <div class="row mb-8 justify-content-center">
+        <!-- caption -->
+        <div class="col-lg-8 col-md-12 col-12 text-center">
+          <span
+            class="text-primary mb-3 d-block text-uppercase fw-semi-bold ls-xl"
+            >PORTFOLIO</span
+          >
+          <h2 class="mb-2 display-4 fw-bold">Take a Look to Our Portfolio</h2>
+          <p class="lead">WE KEEP TRACK OF OUR CUSTOMERS AND PRODUCTS</p>
+        </div>
+      </div>
+      <div class="row">
+        {% for x in projects %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+          <!-- card -->
+          <div class="card mb-4 card-hover">
+            <!-- card body -->
+            
+          
+            <div class="card-body">
+             
+              <h3 class="mb-0 fw-semi-bold">
+               
+                <a href="{{x.site_link}}" class="text-inherit">{{x.name}}</a>
+              </h3>
+              <span class="fs-5 mb-2 fw-semi-bold d-block text-success"
+              >{{x.category}}</span
+              <p class="mb-3">{{x.description}}</p>
+              <div class="lh-1 d-flex justify-content-between">
+                <div>
+                  <span class="fs-6">
+                    <i class="mdi mdi-star text-warning"></i>
+                    <span class="text-warning">5</span>
+                  </span>
+                </div>
+                <div>
+                  <span class="fs-6 text-muted"
+                    ><span class="text-dark">Launched at: {{x.start_date}}</span
+                  >
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
 </div>
 {%endblock body%}
